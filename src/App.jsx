@@ -7,6 +7,7 @@ import { USER_TABLE_COLUMNS } from './components/user/userColoumns'
 import { UserContext } from './context/mainContext'
 
 export default function App() {
+	const [isModalOpen, setIsModalOpen] = useState(false)
 	const {
 		data: { isLoading, isError, error, users },
 		dispatch,
@@ -38,7 +39,18 @@ export default function App() {
 
 	return (
 		<>
+			<button
+				style={{
+					backgroundColor: '#22c55e',
+					display: 'inline-block',
+					marginBottom: '2rem',
+				}}
+				onClick={() => setIsModalOpen(true)}
+			>
+				Add User
+			</button>
 			<Table columns={USER_TABLE_COLUMNS} data={users} />
+			{isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
 		</>
 	)
 }
